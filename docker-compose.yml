@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  movies-app:
+    container_name: movies-app
+    image: movies-app:latest
+    build: .
+    command: ["yarn", "start"]
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    depends_on:
+      - movies-db
+    links:
+      - movies-db
+
+  movies-db:
+    container_name: movies-db
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGODB_DATABASE: movies-db
+    volumes:
+      - ./data/db:/data/db
