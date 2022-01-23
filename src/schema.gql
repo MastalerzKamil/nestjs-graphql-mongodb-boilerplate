@@ -3,8 +3,14 @@
 # ------------------------------------------------------
 
 type Movie {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Movie Id"""
+  id: String!
+
+  """Movie title"""
+  title: String!
+
+  """description about movie"""
+  description: String
 }
 
 type Query {
