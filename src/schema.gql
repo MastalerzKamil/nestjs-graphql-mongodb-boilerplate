@@ -25,12 +25,22 @@ type Mutation {
 }
 
 input CreateMovieInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Movie Id"""
+  id: String!
+
+  """Movie title"""
+  title: String!
+
+  """description about movie"""
+  description: String
 }
 
 input UpdateMovieInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  id: String!
+
+  """Movie title"""
+  title: String
+
+  """description about movie"""
+  description: String
 }

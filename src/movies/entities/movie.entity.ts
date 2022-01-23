@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 @ObjectType()
 export class Movie {
@@ -11,4 +11,3 @@ export class Movie {
   @Field({ description: 'description about movie', nullable: true })
   description?: string;
 }
-
