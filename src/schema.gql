@@ -4,7 +4,7 @@
 
 type Movie {
   """Movie Id"""
-  id: String!
+  id: String
 
   """Movie title"""
   title: String!
@@ -26,7 +26,7 @@ type Mutation {
 
 input CreateMovieInput {
   """Movie Id"""
-  id: String!
+  id: String
 
   """Movie title"""
   title: String!
@@ -36,7 +36,8 @@ input CreateMovieInput {
 }
 
 input UpdateMovieInput {
-  id: String!
+  """Updated movie id"""
+  id: String
 
   """Movie title"""
   title: String
