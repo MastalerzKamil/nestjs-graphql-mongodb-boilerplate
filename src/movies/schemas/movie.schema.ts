@@ -14,7 +14,7 @@ export class Movie {
   year: number;
 
   @Prop()
-  description: string;
+  description?: string;
 }
 
 export const MovieSchema = SchemaFactory.createForClass(Movie);

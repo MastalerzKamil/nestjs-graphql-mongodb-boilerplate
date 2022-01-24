@@ -42,7 +42,8 @@ $ npm run test:cov
 mutation {
   createMovie(createMovieInput: {
     title: "Hunger Games",
-    description: "Lorem Ipsum der mar"
+    description: "Lorem Ipsum der mar",
+      year: 2001
   }) {id}
 }
 ```

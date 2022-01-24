@@ -10,4 +10,7 @@ export class Movie {
 
   @Field({ description: 'description about movie', nullable: true })
   description?: string;
+
+  @Field({ description: 'movie year' })
+  year: number;
 }

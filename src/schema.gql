@@ -11,6 +11,9 @@ type Movie {
 
   """description about movie"""
   description: String
+
+  """movie year"""
+  year: Float!
 }
 
 type Query {
@@ -31,6 +34,9 @@ input CreateMovieInput {
   """Movie title"""
   title: String!
 
+  """Movie year when it was created"""
+  year: Float!
+
   """description about movie"""
   description: String
 }
@@ -41,6 +47,9 @@ input UpdateMovieInput {
 
   """Movie title"""
   title: String
+
+  """Movie year when it was created"""
+  year: Float
 
   """description about movie"""
   description: String
