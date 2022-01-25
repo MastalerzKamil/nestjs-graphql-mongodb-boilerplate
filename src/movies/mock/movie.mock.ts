@@ -1,4 +1,4 @@
-import { Movie } from '../entities/movie.entity';
+import { Movie } from '../models/movie.model';
 
 export const movieMock: Movie = {
   title: 'Matrix',

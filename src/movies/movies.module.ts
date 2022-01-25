@@ -3,7 +3,7 @@ import { MoviesService } from './movies.service';
 import { MoviesResolver } from './movies.resolver';
 import { MongooseModule } from '@nestjs/mongoose';
 import { DBConnections } from '../config/db-connections';
-import { Movie } from './entities/movie.entity';
+import { Movie } from './models/movie.model';
 import { MovieSchema } from './schemas/movie.schema';
 
 @Module({

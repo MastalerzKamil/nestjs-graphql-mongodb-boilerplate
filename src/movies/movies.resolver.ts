@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { MoviesService } from './movies.service';
-import { Movie } from './entities/movie.entity';
+import { Movie } from './models/movie.model';
 import { CreateMovieInput } from './dto/create-movie.input';
 import { UpdateMovieInput } from './dto/update-movie.input';
 import { BadRequestException } from '@nestjs/common';
