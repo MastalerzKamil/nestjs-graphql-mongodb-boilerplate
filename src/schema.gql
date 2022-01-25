@@ -18,13 +18,13 @@ type Movie {
 
 type Query {
   movies: [Movie!]!
-  movie(id: Int!): Movie!
+  movie(id: String!): Movie!
 }
 
 type Mutation {
   createMovie(createMovieInput: CreateMovieInput!): Movie!
   updateMovie(updateMovieInput: UpdateMovieInput!): Movie!
-  removeMovie(id: Int!): Movie!
+  removeMovie(id: String!): Movie!
 }
 
 input CreateMovieInput {

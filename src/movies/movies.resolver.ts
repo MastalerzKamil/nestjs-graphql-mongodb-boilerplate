@@ -1,35 +1,47 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { MoviesService } from './movies.service';
 import { Movie } from './entities/movie.entity';
 import { CreateMovieInput } from './dto/create-movie.input';
 import { UpdateMovieInput } from './dto/update-movie.input';
+import { BadRequestException } from '@nestjs/common';
 
 @Resolver(() => Movie)
 export class MoviesResolver {
   constructor(private readonly moviesService: MoviesService) {}
 
   @Mutation(() => Movie)
-  createMovie(@Args('createMovieInput') createMovieInput: CreateMovieInput) {
-    return this.moviesService.create(createMovieInput);
+  async createMovie(
+    @Args('createMovieInput') createMovieInput: CreateMovieInput,
+  ) {
+    return await this.moviesService.create(createMovieInput).catch((error) => {
+      throw new BadRequestException(error);
+    });
   }
 
   @Query(() => [Movie], { name: 'movies' })
-  findAll() {
-    return this.moviesService.findAll();
+  async findAll() {
+    return await this.moviesService.findAll().catch((error) => {
+      throw new BadRequestException(error);
+    });
   }
 
   @Query(() => Movie, { name: 'movie' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.moviesService.findOne(id);
+  async findOne(@Args('id', { type: () => String }) id: string) {
+    return await this.moviesService.findOne(id);
   }
 
   @Mutation(() => Movie)
-  updateMovie(@Args('updateMovieInput') updateMovieInput: UpdateMovieInput) {
-    return this.moviesService.update(updateMovieInput.id, updateMovieInput);
+  async updateMovie(
+    @Args('updateMovieInput') updateMovieInput: UpdateMovieInput,
+  ) {
+    return await this.moviesService.update(
+      updateMovieInput.id,
+      updateMovieInput,
+    );
   }
 
   @Mutation(() => Movie)
-  removeMovie(@Args('id', { type: () => Int }) id: number) {
-    return this.moviesService.remove(id);
+  async removeMovie(@Args('id', { type: () => String }) id: string) {
+    return await this.moviesService.remove(id);
   }
 }
