@@ -1,7 +1,7 @@
 
 ## Description
 
-MongoDB CRUD boilerplate to GraphQL API in Nest.JS
+MongoDB CRUD boilerplate to GraphQL API in Nest.JS. API has been designed to Node 14.18.3
 
 ## Installation
 
@@ -21,6 +21,8 @@ $ npm run start:dev
 # production mode
 $ npm run start:prod
 ```
+
+You can also use `docker compse`. Just use `docker compose up -d` and then go to `localhost:3000/graphql` in order to find playground to test API 
 
 ## Test
 
@@ -53,6 +55,21 @@ query {
     id
     title
     description
+    characters {
+      name
+    }
+  }
+}
+
+// Get movie by id
+query {
+  movie(id: "61f15ed82f643f99687e54e9") {
+    id
+    title
+    description
+    characters {
+      name
+    }
   }
 }
 
@@ -64,11 +81,19 @@ mutation {
 // update movie by id
 mutation {
   updateMovie(updateMovieInput: {
-    id: "61edbd1f55cd5f28799f45f0",
+    id: "61f15596a68d9e234afe6b92",
       title: "Hobbit",
       description: "Lorem Ipsum der mar",
       year: 2012
-  }) {id}
+    characters: [{name: "Bilbo Baggins"}, {name: "Gandalf"}]
+  }) {
+    id
+    title
+    year
+    characters {
+      name
+    }
+  }
 }
 ```
 

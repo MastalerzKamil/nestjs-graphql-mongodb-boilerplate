@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Character {
+  """character name"""
+  name: String!
+}
+
 type Movie {
   """Movie Id"""
   id: String
@@ -14,6 +19,9 @@ type Movie {
 
   """movie year"""
   year: Float!
+
+  """characters that take part in the movie"""
+  characters: [Character!]!
 }
 
 type Query {
@@ -39,18 +47,29 @@ input CreateMovieInput {
 
   """description about movie"""
   description: String
+
+  """characters that take part in the movie"""
+  characters: [CharacterInput!]
+}
+
+input CharacterInput {
+  """character name"""
+  name: String!
 }
 
 input UpdateMovieInput {
-  """Updated movie id"""
+  """Movie Id"""
   id: String
 
   """Movie title"""
-  title: String
+  title: String!
 
   """Movie year when it was created"""
-  year: Float
+  year: Float!
 
   """description about movie"""
   description: String
+
+  """characters that take part in the movie"""
+  characters: [CharacterInput!]
 }
