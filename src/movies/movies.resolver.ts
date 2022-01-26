@@ -13,35 +13,52 @@ export class MoviesResolver {
   async createMovie(
     @Args('createMovieInput') createMovieInput: CreateMovieInput,
   ) {
-    return await this.moviesService.create(createMovieInput).catch((error) => {
+    try {
+      return await this.moviesService.create(createMovieInput);
+    } catch (error) {
       throw new BadRequestException(error);
-    });
+    }
   }
 
   @Query(() => [Movie], { name: 'movies' })
   async findAll() {
-    return await this.moviesService.findAll().catch((error) => {
+    try {
+      return await this.moviesService.findAll();
+    } catch (error) {
       throw new BadRequestException(error);
-    });
+    }
   }
 
   @Query(() => Movie, { name: 'movie' })
   async findOne(@Args('id', { type: () => String }) id: string) {
-    return await this.moviesService.findOne(id);
+    try {
+      return await this.moviesService.findOne(id);
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 
   @Mutation(() => Movie)
   async updateMovie(
     @Args('updateMovieInput') updateMovieInput: UpdateMovieInput,
   ) {
-    return await this.moviesService.update(
-      updateMovieInput.id,
-      updateMovieInput,
-    );
+    try {
+      return await this.moviesService.update(
+        updateMovieInput.id,
+        updateMovieInput,
+      );
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+
   }
 
   @Mutation(() => Movie)
   async removeMovie(@Args('id', { type: () => String }) id: string) {
-    return await this.moviesService.remove(id);
+    try {
+      return await this.moviesService.remove(id);
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 }
