@@ -22,14 +22,14 @@ export class MoviesService {
   }
 
   async findOne(id: string): Promise<Movie> {
-    return this.movieModel.findOne({ id });
+    return this.movieModel.findOne({ id }).exec();
   }
 
   async update(id: string, updateMovieInput: UpdateMovieInput): Promise<Movie> {
-    return this.movieModel.findByIdAndUpdate(id, updateMovieInput);
+    return this.movieModel.findByIdAndUpdate(id, updateMovieInput).exec();
   }
 
   async remove(id: string): Promise<Movie> {
-    return this.movieModel.findByIdAndDelete(id);
+    return this.movieModel.findByIdAndDelete(id).exec();
   }
 }
