@@ -50,7 +50,6 @@ export class MoviesResolver {
     } catch (error) {
       throw new BadRequestException(error);
     }
-
   }
 
   @Mutation(() => Movie)

@@ -1,12 +1,12 @@
 import { Movie, MovieDocument } from '../schemas/movie.schema';
-import { Character } from '../models/character.model';
+import { MovieCharacter } from '../models/movie-character.model';
 
 export const stubMovie = (
   title = 'Hobbit',
   description = 'Lorem Ipsum',
   id = 'auuid',
   year = 2004,
-  characters = [{ name: 'test' }] as [Character],
+  characters = [{ name: 'test' }] as [MovieCharacter],
 ): Movie => ({
   title,
   id,
@@ -22,7 +22,7 @@ export const stubMovieDoc = (
   year: mock?.year || 2004,
   id: mock?.id || 'auuid',
   description: mock?.description || 'Lorem Ipsum',
-  characters: mock?.characters || ([{ name: 'test' }] as [Character]),
+  characters: mock?.characters || ([{ name: 'test' }] as [MovieCharacter]),
 });
 
 export const moviesArray = [
@@ -32,7 +32,7 @@ export const moviesArray = [
     'Movie about polish mafia from Gdansk',
     'auuid2',
     2021,
-    [{ name: 'test' }] as [Character],
+    [{ name: 'test' }] as [MovieCharacter],
   ),
   stubMovie('Harry Potter', 'movie about magic', 'auuid3', 2004, [{ name: 'test' }]),
 ];
@@ -44,13 +44,13 @@ export const moviesDocArray = [
     description: 'Movie about polish mafia from Gdansk',
     id: 'auuid2',
     year: 2021,
-    characters: [{ name: 'test' }] as [Character],
+    characters: [{ name: 'test' }] as [MovieCharacter],
   }),
   stubMovieDoc({
     title: 'Harry Potter',
     description: 'movie about magic',
     id: 'auuid3',
     year: 2004,
-    characters: [{ name: 'test' }] as [Character],
+    characters: [{ name: 'test' }] as [MovieCharacter],
   }),
 ];

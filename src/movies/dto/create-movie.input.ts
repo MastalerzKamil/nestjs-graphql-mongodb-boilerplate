@@ -1,6 +1,6 @@
 import { InputType, Field } from '@nestjs/graphql';
 import { IsNumber, IsOptional, IsString } from 'class-validator';
-import { CharacterInput } from './character.input';
+import { MovieCharacterInput } from './movie-character.input';
 
 @InputType()
 export class CreateMovieInput {
@@ -21,10 +21,10 @@ export class CreateMovieInput {
   @IsOptional()
   description?: string;
 
-  @Field(() => [CharacterInput], {
+  @Field(() => [MovieCharacterInput], {
     description: 'characters that take part in the movie',
     nullable: true,
   })
   @IsOptional()
-  characters?: [CharacterInput];
+  characters?: [MovieCharacterInput];
 }

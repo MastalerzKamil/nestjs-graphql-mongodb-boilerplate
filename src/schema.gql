@@ -2,8 +2,8 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Character {
-  """character name"""
+type MovieCharacter {
+  """character name from movie"""
   name: String!
 }
 
@@ -21,7 +21,7 @@ type Movie {
   year: Float!
 
   """characters that take part in the movie"""
-  characters: [Character!]!
+  characters: [MovieCharacter!]!
 }
 
 type Query {
@@ -49,10 +49,10 @@ input CreateMovieInput {
   description: String
 
   """characters that take part in the movie"""
-  characters: [CharacterInput!]
+  characters: [MovieCharacterInput!]
 }
 
-input CharacterInput {
+input MovieCharacterInput {
   """character name"""
   name: String!
 }
@@ -71,5 +71,5 @@ input UpdateMovieInput {
   description: String
 
   """characters that take part in the movie"""
-  characters: [CharacterInput!]
+  characters: [MovieCharacterInput!]
 }

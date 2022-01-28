@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Character } from './character.model';
+import { MovieCharacter } from './movie-character.model';
 
 @ObjectType()
 export class Movie {
@@ -15,8 +15,8 @@ export class Movie {
   @Field({ description: 'movie year' })
   year: number;
 
-  @Field(() => [Character], {
+  @Field(() => [MovieCharacter], {
     description: 'characters that take part in the movie',
   })
-  characters: [Character];
+  characters: [MovieCharacter];
 }
