@@ -3,7 +3,7 @@ import { MoviesService } from './movies.service';
 import { MovieDocument, movieSchemaToken } from './schemas/movie.schema';
 import { getModelToken } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { moviesArray, moviesDocArray, stubMovie, stubMovieDoc } from "./stub/movie.stub";
+import { moviesDocArray, stubMovie, stubMovieDoc } from './stub/movie.stub';
 
 describe('MoviesService', () => {
   let service: MoviesService;
@@ -41,13 +41,23 @@ describe('MoviesService', () => {
   });
 
   describe('finding all movies', () => {
-    it('should return all movies', async () => {
+    it('should return oly first 2 movies with counts from database with 3 movies', async () => {
       jest.spyOn(model, 'find').mockReturnValue({
-        exec: jest.fn().mockResolvedValueOnce(moviesDocArray),
+        skip: jest.fn().mockReturnValue({
+          limit: jest.fn().mockReturnValue({
+            exec: jest
+              .fn()
+              .mockResolvedValueOnce([moviesDocArray[0], moviesDocArray[1]]),
+          }),
+        }),
       } as any);
 
-      const movies = await service.findAll();
-      expect(movies).toEqual(moviesArray);
+      const movies = await service.findAll(2, 0);
+      const expectedResult = {
+        movies: [moviesDocArray[0], moviesDocArray[1]],
+        count: 2,
+      };
+      expect(movies).toEqual(expectedResult);
     });
   });
 

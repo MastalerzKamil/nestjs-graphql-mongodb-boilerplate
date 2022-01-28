@@ -24,7 +24,7 @@ export class MoviesService {
       .skip(offset)
       .limit(limit)
       .exec();
-    return { movies: movies, count: movies.length};
+    return { movies: movies, count: movies.length };
   }
 
   async findOne(id: string): Promise<Movie> {
