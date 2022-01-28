@@ -4,6 +4,7 @@ import { UpdateMovieInput } from './dto/update-movie.input';
 import { InjectModel } from '@nestjs/mongoose';
 import { Movie, MovieDocument, movieSchemaToken } from './schemas/movie.schema';
 import { Model } from 'mongoose';
+import { MoviesAndCount } from './types/movies-and-count';
 
 @Injectable()
 export class MoviesService {
@@ -17,8 +18,13 @@ export class MoviesService {
     return newMovie.save();
   }
 
-  async findAll(): Promise<Movie[]> {
-    return this.movieModel.find().exec();
+  async findAll(limit: number, offset: number): Promise<MoviesAndCount> {
+    const movies = await this.movieModel
+      .find()
+      .skip(offset)
+      .limit(limit)
+      .exec();
+    return { movies: movies, count: movies.length};
   }
 
   async findOne(id: string): Promise<Movie> {

@@ -24,8 +24,48 @@ type Movie {
   characters: [MovieCharacter!]!
 }
 
+type PageData {
+  count: Float!
+  limit: Float!
+  offset: Float!
+}
+
+type AllMoviesResponse {
+  page: MovieConnection!
+  pageData: PageData
+}
+
+type MovieConnection {
+  edges: [MovieEdge!]
+  pageInfo: MoviePageInfo
+}
+
+type MovieEdge {
+  cursor: String
+  node: Movie
+}
+
+type MoviePageInfo {
+  startCursor: String
+  endCursor: String
+  hasPreviousPage: Boolean!
+  hasNextPage: Boolean!
+}
+
 type Query {
-  movies: [Movie!]!
+  movies(
+    """Paginate before opaque cursor"""
+    before: String
+
+    """Paginate after opaque cursor"""
+    after: String
+
+    """Paginate first"""
+    first: Float
+
+    """Paginate last"""
+    last: Float
+  ): AllMoviesResponse!
   movie(id: String!): Movie!
 }
 
