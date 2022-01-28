@@ -1,0 +1,25 @@
+
+service: movies-api
+
+useDotenv: true
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  environment:
+    MONGODB_MOVIES_APP: ${env:MONGODB_MOVIES_APP}
+    NODE_ENV: ${env:NODE_ENV}
+
+functions:
+  main:
+    handler: dist/lambda-entrypoint.handler
+    events:
+      - http:
+          method: ANY
+          path: /
+      - http:
+          method: ANY
+          path: '{proxy+}'
