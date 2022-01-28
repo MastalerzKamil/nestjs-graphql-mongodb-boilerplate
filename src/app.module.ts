@@ -26,7 +26,12 @@ import configuration from './config/configuration';
     GraphQLModule.forRoot({
       debug: false,
       installSubscriptionHandlers: true,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(
+        process.cwd(),
+        process.env.NODE_ENV === 'production'
+          ? 'dist/schema.gpl'
+          : 'src/schema.gql',
+      ),
     }),
     MoviesModule,
   ],
