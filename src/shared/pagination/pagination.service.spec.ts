@@ -102,4 +102,17 @@ describe('PaginationService', () => {
       });
     });
   });
+
+  describe('getPagingParameters', () => {
+    it('should calculate params for forward paging', () => {
+      const input: ConnectionArgs = {
+        pagingParams: jest.fn(),
+        first: 2,
+      };
+
+      const result = service.getPagingParameters(input);
+
+      expect(result).toEqual({ limit: 2, offset: 0 });
+    });
+  });
 });
