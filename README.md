@@ -46,6 +46,10 @@ mutation {
     title: "Hunger Games",
     description: "Lorem Ipsum der mar",
       year: 2001
+    characters: [
+      { name: "character 1"},
+      { name: "character 2"}
+    ]
   }) {id}
 }
 
