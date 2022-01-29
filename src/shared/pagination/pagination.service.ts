@@ -2,6 +2,7 @@ import ConnectionArgs from './types/connection.args';
 import { ConnectionCursor, fromGlobalId } from 'graphql-relay';
 import { PagingMeta } from './types/paging-meta.type';
 import { PagingParameter } from './types/paging-parameter.type';
+import { BadRequestException } from '@nestjs/common';
 
 export class PaginationService {
   getId = (cursor: ConnectionCursor) => parseInt(fromGlobalId(cursor).id, 10);
@@ -13,17 +14,23 @@ export class PaginationService {
     const isForwardPaging = !!first || !!after;
     const isBackwardPaging = !!last || !!before;
     if (isForwardPaging && isBackwardPaging) {
-      throw new Error('Relay pagination cannot be forwards AND backwards!');
+      throw new BadRequestException(
+        new Error('Relay pagination cannot be forwards AND backwards!'),
+      );
     }
     if ((isForwardPaging && before) || (isBackwardPaging && after)) {
-      throw new Error('Paging must use either first/after or last/before!');
+      throw new BadRequestException(
+        new Error('Paging must use either first/after or last/before!'),
+      );
     }
     if ((isForwardPaging && first < 0) || (isBackwardPaging && last < 0)) {
-      throw new Error('Paging limit must be positive!');
+      throw new BadRequestException(
+        new Error('Paging limit must be positive!'),
+      );
     }
     if (last && !before) {
-      throw new Error(
-        "When paging backwards, a 'before' argument is required!",
+      throw new BadRequestException(
+        new Error("When paging backwards, a 'before' argument is required!"),
       );
     }
 
