@@ -1,7 +1,7 @@
 
 ## Description
 
-MongoDB CRUD boilerplate to GraphQL API in Nest.JS. API has been designed to Node 14.18.3
+MongoDB CRUD boilerplate to GraphQL API in Nest.JS. API has been designed to Node 14.18.3. 
 
 ## Installation
 
@@ -10,6 +10,8 @@ $ npm install
 ```
 
 ## Running the app
+
+Note that there isn't `.env` file in repo. Please, copy it from `.env.examle` and fit it into your needs
 
 ```bash
 # development
@@ -23,6 +25,13 @@ $ npm run start:prod
 ```
 
 You can also use `docker compse`. Just use `docker compose up -d` and then go to `localhost:3000/graphql` in order to find playground to test API 
+
+## AWS Serverless production
+
+I've deployed the app into AWS Fargate as a production with enabled playground. I know that it's not a good practice but it's just for  demo puroses.
+Use URI `http://34.244.179.71:3000/graphql` in order to get into production playground.
+
+Another thing is at the moment I've created resources manually but AWS-CDK is better solution because it pretends missclicks.
 
 ## Test
 

@@ -24,14 +24,13 @@ import configuration from './config/configuration';
       load: [configuration],
     }),
     GraphQLModule.forRoot({
-      debug: false,
+      debug: true,
       installSubscriptionHandlers: true,
-      autoSchemaFile: join(
-        process.cwd(),
+      playground: true,
+      autoSchemaFile:
         process.env.NODE_ENV === 'production'
-          ? 'dist/schema.gpl'
-          : 'src/schema.gql',
-      ),
+          ? 'dist/schema.gql'
+          : join(process.cwd(), 'src/schema.gql'),
     }),
     MoviesModule,
   ],
