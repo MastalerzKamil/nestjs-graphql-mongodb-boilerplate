@@ -1,20 +1,15 @@
-FROM node:14.15.0-alpine
-
+FROM node:14-alpine as build
 RUN mkdir -p /app
-
 WORKDIR /app
-
 COPY package*.json ./
-COPY yarn.lock ./
-
-RUN cat package.json
-RUN ls /app
-RUN yarn install
-
+RUN npm install
 ADD . .
+RUN npm run build
 
-RUN yarn build
-
+FROM node:14-alpine
+WORKDIR /app
+COPY package.json .
+RUN npm install --only=prod
+COPY --from=build /app/dist ./dist
 EXPOSE 3000
-
-CMD ["yarn", "start"]
+CMD npm run start:prod

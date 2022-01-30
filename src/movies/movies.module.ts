@@ -9,9 +9,7 @@ import { MovieSchema } from './schemas/movie.schema';
 @Module({
   imports: [
     MongooseModule.forFeature(
-      [
-        { name: Movie.name, schema: MovieSchema },
-      ],
+      [{ name: Movie.name, schema: MovieSchema }],
       DBConnections.moviesApp,
     ),
   ],

@@ -5,7 +5,8 @@ services:
     container_name: movies-app
     image: movies-app:latest
     build: .
-    command: ["yarn", "start"]
+    env_file:
+      - ./.env
     ports:
       - "3000:3000"
     volumes:
